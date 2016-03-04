@@ -1,0 +1,51 @@
+group 'mihir-code'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+// Use Java 7 by default
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+// Set our project variables
+project.ext {
+    dropwizardVersion = '0.9.2'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile (
+            'io.dropwizard:dropwizard-core:' + dropwizardVersion,
+            'io.dropwizard:dropwizard-forms:0.9.2',
+            'io.dropwizard:dropwizard-assets:0.9.2',
+            'io.dropwizard:dropwizard-client:0.9.2',
+            'io.dropwizard:dropwizard-testing:0.9.2',
+            'io.dropwizard:dropwizard-views-mustache:0.9.2',
+            'org.apache.commons:commons-io:1.3.2',
+            'com.h2database:h2:1.3.168'
+    )
+    testCompile(
+            'junit:junit:4.11'
+    )
+}
+
+// The main class of the application
+mainClassName = 'com.mediamath.fileupload.FileUploadService'
+
+// Configure the run task to start the Dropwizard service
+run {
+    args 'server', './src/main/resources/fileupload.yml'
+
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.2'
+}

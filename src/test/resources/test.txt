@@ -1,0 +1,4 @@
+Test fox ran away, now what to test.
+Man always chases away the fox.
+
+End test.
